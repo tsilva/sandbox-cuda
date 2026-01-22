@@ -1,55 +1,111 @@
-# CUDA Multiplication Benchmark
+<div align="center">
+  <img src="logo.png" alt="sandbox-cuda" width="256"/>
 
-This project demonstrates a simple CUDA benchmark comparing CPU vs GPU performance for repetitive multiplication operations.
+  # sandbox-cuda
 
-## Prerequisites
+  [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+  [![CUDA](https://img.shields.io/badge/CUDA-11.0%2B-76B900?logo=nvidia)](https://developer.nvidia.com/cuda-toolkit)
+  [![CMake](https://img.shields.io/badge/CMake-3.16%2B-064F8C?logo=cmake)](https://cmake.org/)
+  [![C++14](https://img.shields.io/badge/C%2B%2B-14-00599C?logo=cplusplus)](https://isocpp.org/)
 
-- NVIDIA GPU with CUDA support
-- CUDA Toolkit (tested with version 11.0+)
-- CMake (version 3.18 or higher)
-- C++ compiler (supporting C++14)
+  **Benchmark CPU vs GPU performance with parallel multiplication operations**
 
-## Building the Project
+  [Overview](#overview) · [Quick Start](#quick-start) · [Configuration](#configuration)
+</div>
 
-1. Clone the repository:
+---
+
+## Overview
+
+sandbox-cuda demonstrates the raw power difference between sequential CPU computation and massively parallel GPU execution. Run a million multiplication operations and see speedup factors that showcase why GPUs dominate parallel workloads.
+
+### Features
+
+- **Side-by-side comparison** - Identical workloads on CPU and GPU with timing
+- **Configurable workload** - Adjust element count, iterations, and multiplier
+- **Result verification** - Automatic validation that CPU and GPU produce matching results
+- **Clean CMake build** - Simple build process with CUDA architecture targeting
+
+## Quick Start
+
 ```bash
+# Clone and build
 git clone https://github.com/tsilva/sandbox-cuda.git
 cd sandbox-cuda
+mkdir build && cd build
+cmake .. && make
+
+# Run benchmark
+../bin/multiply_benchmark
 ```
 
-2. Build the project:
+**Example output:**
+```
+GPU Time: 0.001234 seconds
+CPU Time: 0.456789 seconds
+Speedup: 370x
+First element GPU: 2.718282, CPU: 2.718282
+Last element GPU: 2.718282, CPU: 2.718282
+```
+
+## Installation
+
+### Prerequisites
+
+| Requirement | Version |
+|-------------|---------|
+| NVIDIA GPU | CUDA-capable |
+| CUDA Toolkit | 11.0+ |
+| CMake | 3.16+ |
+| C++ Compiler | C++14 support |
+
+### Build from Source
+
 ```bash
+mkdir build && cd build
 cmake ..
 make
 ```
 
-The executable will be created in the `bin` directory at the project root.
+The executable is placed in `bin/` at the project root.
 
-## Running the Benchmark
+## Configuration
 
-After building, run the benchmark executable:
-```bash
-../bin/multiply_benchmark
+Modify these constants in `src/multiply_benchmark.cu` to experiment with different workloads:
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `NUM_ELEMENTS` | 1,000,000 | Number of parallel computations |
+| `ITERATIONS` | 1,000 | Multiplications per element |
+| `VALUE` | 1.001f | The floating-point multiplier |
+
+### CUDA Execution
+
+- **Block size**: 256 threads per block
+- **Grid size**: Calculated as `(NUM_ELEMENTS + blockSize - 1) / blockSize`
+- **Target architectures**: Maxwell (52) and Volta/Turing (72)
+
+## Architecture
+
+```
+sandbox-cuda/
+├── src/
+│   └── multiply_benchmark.cu    # Main benchmark code
+├── bin/                         # Build output
+├── CMakeLists.txt               # Build configuration
+└── README.md
 ```
 
-The program will output:
-- GPU execution time
-- CPU execution time
-- Speedup factor (CPU time / GPU time)
-- First and last elements computed by both CPU and GPU for verification
+The benchmark consists of three components:
 
-## Modifying Parameters
+1. **GPU Kernel** (`multiplyKernel`) - CUDA kernel performing parallel multiplications across thread blocks
+2. **CPU Implementation** (`multiplyCPU`) - Sequential reference for comparison
+3. **Main** - Orchestrates memory allocation, execution, timing, and verification
 
-You can modify the following constants in `src/multiply_benchmark.cu` to experiment with different workloads:
+## Contributing
 
-- `NUM_ELEMENTS`: Number of parallel computations (default: 1,000,000)
-- `ITERATIONS`: Number of multiplications per element (default: 1,000)
-- `VALUE`: The number being multiplied (default: 1.001f)
+Contributions are welcome. Please open an issue or submit a pull request.
 
-## Understanding the Code
+## License
 
-The benchmark performs the following operations:
-1. Allocates memory on both CPU and GPU
-2. Executes the same multiplication task on both devices
-3. Measures and compares execution time
-4. Verifies results match between CPU and GPU implementations
+MIT License - see [LICENSE](LICENSE) for details.
