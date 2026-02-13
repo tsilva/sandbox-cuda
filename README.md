@@ -1,7 +1,7 @@
 <div align="center">
   <img src="logo.png" alt="sandbox-cuda" width="512"/>
 
-  **🚀 CUDA benchmark comparing CPU vs GPU performance for parallel computations**
+  **🚀 CUDA benchmark comparing CPU vs GPU performance for parallel computations ⚡**
 
 </div>
 
