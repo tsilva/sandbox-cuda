@@ -1,126 +1,95 @@
-# Build and output directories
-build/
-bin/
-
-# Build directories
-cmake-build-*/
-
-# IDE specific
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-*.ko
-*.elf
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# CUDA specific
-*.i
-*.ii
-*.gpu
-*.ptx
-*.cubin
-*.fatbin
-
-# CMake
-CMakeCache.txt
-CMakeFiles/
-CMakeScripts/
-Testing/
-Makefile
-cmake_install.cmake
-install_manifest.txt
-compile_commands.json
-CTestTestfile.cmake
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# OS specific
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# Sensitive data - credentials and secrets
+# >>> MANAGED BY GITGUARD - DO NOT EDIT THIS SECTION <<<
+.claude/*.local.json
+.claude/*.local.json.bak
+.claude-sandbox.json
 .env
 .env.*
-.env.local
+!.env.example
+!.env.*.example
 .env.*.local
+.env.local
 *.pem
 *.key
 *.p12
 *.pfx
+*.gpg
+*.secret
+*-credentials.json
+service-account*.json
 credentials.json
 secrets.json
-service-account*.json
-*-credentials.json
+.secrets/
 .aws/
 .ssh/
-*.gpg
-
-# API keys and tokens often in these
 config.local.*
-*.secret
-.secrets/
-
-# Logs (may contain sensitive data)
-logs/
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Build artifacts and caches
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*.code-workspace
 __pycache__/
 *.py[cod]
 .venv/
 venv/
 env/
+*.egg-info/
 node_modules/
 .npm/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 dist/
-*.egg-info/
+build/
+logs/
+*.log
+# >>> END MANAGED <<<
 
-# Claude Code
-.claude-sandbox.json
-*.code-workspace
-
-
-# Managed by tsilva/.github
-# Do not remove - synced automatically
-.claude/
-*.pyc
+# Project-specific rules
+*.a
+*.app
+*.cubin
+*.d
+*.dll
+*.dSYM/
+*.dylib
+*.elf
+*.exe
+*.fatbin
+*.gpu
+*.hex
+*.i
+*.i*86
+*.idb
+*.ii
+*.ko
+*.la
+*.lai
+*.lib
+*.lo
+*.o
+*.obj
+*.out
+*.pdb
+*.ptx
+*.slo
+*.so
+*.su
+*.x86_64
+._*
+.DS_Store?
+.Spotlight-V100
+.Trashes
+bin/
+cmake-build-*/
+cmake_install.cmake
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+compile_commands.json
+CTestTestfile.cmake
+ehthumbs.db
+install_manifest.txt
+Makefile
+Testing/
